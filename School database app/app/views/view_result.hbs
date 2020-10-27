@@ -1,0 +1,43 @@
+        
+<!--들어갈 컨텐츠 내용입니다-->
+<body style="background-color:lightsteelblue;">
+  
+<div class="container" style="background-color:white">
+    <h3 style="padding-top:5px;">Search image file</h3>
+      <form action="/view_result" method="post" style="width:20%; padding-top: 15px;">
+        {{> messages }}
+        <input type="text" name="search_data" placeholder="search an image with id number!">
+        <input type="submit" value="search" width="40px">
+          
+    </form>
+    
+<table class="table table-bordered">
+    
+    <thead>
+    <tr style="color:red; font-size:25px;">
+        <th>Guruh number</th>
+        <th>image id number</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each comments}}
+        <tr>
+           <td>{{this.group_number}}</td>
+            <td>{{this.comments}}</td>
+            
+            <td style="width:20px;">
+                <a style="background: darkblue; color:white" class="btn btn-default" href="/show_result/{{this._id}}">ko'rish</a>
+            </td>
+        </tr>
+        
+            
+    {{/each}}
+    </tbody>
+        
+</table>
+  
+    </div>
+</body>
+
+    

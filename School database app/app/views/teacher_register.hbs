@@ -1,0 +1,31 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+     {{#if teacher }}
+             <form action="/teachers/teacher_register" method="post">
+    <div class="login_container">
+      <div class="login">
+         
+              <h1  style="color:red; text-transform:uppercase;">Teacher register</h1>
+          {{> messages}}
+          <input type="text" name="teacher" value="teacher">
+             <input type="text" name="teacher_surname" placeholder="o'qituvchi familya">
+              <input type="text" name="teacher_name" placeholder="o'qituvchi ismi">
+          <input type="text" name="teacher_id" placeholder="o'qituvchi id">
+              <input type="password" name="teacher_password"  placeholder="parol">
+            <input type="password" name="teacher_confirm_password"  placeholder="takroriy parol">
+             
+               <input type="submit" value="register">
+          
+      </div>
+    </div>
+                 </form>
+    {{/if}}
+    </body>
+    
+    
+    </html>

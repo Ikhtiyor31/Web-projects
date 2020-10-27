@@ -1,0 +1,25 @@
+<html>
+
+    
+    <head>
+    
+    </head>
+
+
+<body style="background:lightgray">
+            {{#if teacher }}
+<form action="/teachers/store" method="post"  enctype="multipart/form-data" >
+    <div class="upload_image">		
+  <input name="file" type="file" id="exampleInputFile" aria-describedby="fileHelp" class="file_input" >
+  <p>rasmni tanlash uchun bosing yoki surib tashlang </p>
+        <input type="number" class="form-control" name="group_number" placeholder="guruh raqamini kiring">
+        	<input type="text" class="form-control" name="comments" placeholder="class nomini kiriting">
+  <button type="button" class="btn-submit">O'rnatish</button>
+
+        </div>
+    
+    </form>
+    {{/if}}
+</body>
+    
+</html>
