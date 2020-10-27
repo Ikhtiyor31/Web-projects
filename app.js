@@ -7,23 +7,27 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const i18n = require('i18n');
+const fs = require('fs');
 const flash = require('connect-flash');
 const bodyParser = require('body-parser');
 const MongoStore = require('connect-mongo')(session);
 const expressErrorHandler = require('express-error-handler');
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 
+const join = require('path').join;
+const models = join(__dirname, 'app/models');
 
-require('./app/config/passport')(passport);
+fs.readdirSync(models)
+  .filter(file => ~file.search(/^[^\.].*\.js$/))
+  .forEach(file => require(join(models, file)));
 
-//database connections 
-const keys = require('./app/config/keys');
 
-mongoose.connect(keys.Database, {newUrlencoded: true}, function(err) {
+
+require('./app/teacher/passport')(passport);
+
+mongoose.connect("mongodb://Ikhtiyor:zfgghbh1995@ds213538.mlab.com:13538/todo", {newUrlencoded: true}, function(err) {
    if(err) {
        console.log('error with database ');
    }
@@ -38,41 +42,12 @@ app.set('view engine', '.hbs');
 // view engine setup
 
 app.engine('hbs', hbsbar({    extname: '.hbs', 
-        helpers: require('./app/helpers/handlebars.js').helpers,
         partialsDir: __dirname + '/app/views/partials', 
         defaultLayout: __dirname + '/app/views/layouts/layout.hbs',
         layoutsDir: __dirname + '/app/views/layouts'
 	})); 
 app.use(express.static(path.join(__dirname, 'public')));
 
-i18n.configure({
-    locales: ['ru', 'uz'],
-    register: global,
-    fallback: {'uz': 'ru'},
-    cookie: 'language',
-    queryParameter: 'lang',
-    defualtLocale: 'uz',
-    directory: __dirname + '/app/languages',
-    directoryPermission: '755',
-    autoReload: true,
-    updateFiles: false,
-    syncFiles: false,
-    indent: "\t",
-    api: {
-        '__':'__',
-        '__n':'__n'
-    }
-});
-
-app.use(function(req, res, next) {
-    i18n.init(req, res, next);
-});
-
-app.use(function(req, res, next) {
-    res.locals.clanguage = req.getLocale();
-    res.locals.language = i18n.getLocales();
-    next();
-})
 
 app.use(cookieParser());
 app.use(session({
@@ -105,24 +80,23 @@ app.use(function(req, res, next) {
     next();
 });
 
-
-
 app.use('/', require('./app/routers/users'));
-require('./app/routers/index')(app);
-app.use('/', require('./app/routers/routes'));
-app.get('/home', (req, res)=> {
-    res.render('home');
-});
 
 
-var errorHanlder = new expressErrorHandler({
-    static : {
-        '404': './public/404.html'
+app.use('/teachers', require('./app/routers/teachers'));
+
+
+
+
+var errorHandler = new expressErrorHandler({
+    static: {
+        '404':'./public/404.html'
     }
-});
+})
 
 app.use(expressErrorHandler.httpError(404));
-app.use(errorHanlder);
-http.createServer(app).listen(4000, function() {
-    console.log('app is listening port 4000');
-});
+app.use(errorHandler);
+
+app.listen(3000, function() {
+    console.log('app is running on port 3000');
+})

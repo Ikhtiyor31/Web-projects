@@ -1,0 +1,29 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+     
+             <form action="/teachers/teacher_login" method="post">
+    <div class="login_container">
+      <div class="login">
+          <img src="/images/logo_photo.jpg" width="60" height="50">
+              <h1  style="color:red; text-transform:uppercase;">ADMIN LOG IN</h1>
+            {{> messages}}
+           <input type="text" name="teacher"  value="teacher">
+              <input type="text" name="teacher_id" placeholder="ID">
+              <input type="password" name="password"  placeholder="parol"><br>
+             <span> <input type="checkbox">Remember me</span>
+            
+               <input type="submit" value="login">
+             
+              
+      </div>
+    </div>
+                 </form>
+    </body>
+    
+    
+    </html>

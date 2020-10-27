@@ -1,0 +1,16 @@
+
+.nav-link {
+    	font-family: 'Courier New', sans-serif;
+	
+  font-weight: lighter;
+  text-decoration: none;
+  transition: 0.3s;
+  margin-right: 70px;
+    color: white;
+    
+}
+.nav-link:hover{
+    color: lightgray;
+	opacity: .5;
+			transition: .3s;
+}

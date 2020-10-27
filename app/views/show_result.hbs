@@ -1,0 +1,20 @@
+
+
+<body>
+   
+    <div class="container">
+            <h1>THE RESULT OF STUDENT</h1>
+         
+          <div style="padding:10px; width:100%; height:100%; border: 1px solid lightgray;">
+           {{#if comment.photo}}
+				<img  src="/uploads/{{comment.photo.filename}}" alt="..." style="width:100%; height:100%;">
+			{{else}}
+				<img class="img-responsive" src="/assets/img/empty.jpg" alt="...">
+			{{/if}}
+          
+          </div>
+       
+    
+    </div>
+    
+    </body>
