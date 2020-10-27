@@ -1,0 +1,38 @@
+body {
+top: 0;
+
+margin: 0px;
+padding: 0px;
+font-family: Arial;
+ }
+
+
+nav {
+height: 50px;
+width: 100%;
+background-color: #4d4d4d;
+position: relative;
+}
+
+nav ul {
+	
+}
+nav ul li {
+	
+	display: inline-block;
+	
+    margin-left: 30px;
+  
+}
+nav ul li a {
+	  font-family: Arial;
+	  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: silver;
+  font-size: 16px;
+}
+nav ul li a:hover {
+	text-decoration: none;
+	 color: white;
+}

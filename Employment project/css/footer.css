@@ -1,0 +1,20 @@
+
+.footer_part {
+	 height: 50px;
+  width: 100%;
+  background-color: #4d4d4d;
+  position: fixed;
+   left: 0;
+   bottom: 0;
+   
+}
+
+.footer_text {
+	text-align: center;
+	align-content: center;
+	padding-top: 15px;
+}
+.footer_text a {
+	text-align: center;
+	align-content: center;
+}
